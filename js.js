@@ -1,17 +1,18 @@
 /*
 1. Pedirle al usuario la fecha del día
 2. Preguntarle cuántas tareas quiere ingresar
-    // 2.1 Ingresar cada tarea
+    // 2.1 Ingresar cada tarea, con su hora y prioridad 
 3. Preguntarle si quiere 1.agregar, 2.eliminar o 3.finalizar alguna tarea (1, 2 o 3)
-    3.1 (2) Mostrarle las tareas que ingresó y pedirle que elimine una, seleccionando el número de ésta. Después seguir preguntandole el paso 3, hasta que ponga (NO).
+    3.1 (2) Mostrarle las tareas que ingresó y pedirle que elimine una, seleccionando el número de ésta. Después seguir preguntandole que hacer, hasta que ponga la opcion 3 de finalizar.
     3.2 (1) Dejarle ingresar otra tarea
     3.3 (3) Paso 4
-4. Mostrale la fecha y debajo, todas las tarea
+4. Mostrale la fecha y debajo, todas las tarea con su hora y prioridad 
 */
 class Tarea{
-    constructor(prioridad, descripcion){
-        this.prioridad= prioridad;
+    constructor(prioridad, descripcion, hora){
+        this.prioridad = prioridad;
         this.descripcion = descripcion;
+        this.hora = hora;
     }
 }
 
@@ -54,14 +55,22 @@ function fechaVal3(fecha3) {
 }
 
 function valPrioridad (orden){
-    while (orden <= 0 || orden >= 11 || isNaN(orden)){
-        orden = parseInt(prompt("Número incorrecto, ingrese un número válido"))
+    while (orden <= 0 || orden >= 4 || isNaN(orden)){
+        orden = parseInt(prompt("Número inválido, ingrese nuevamente una prioridad"))
     }
     return orden;
 }
 
+function valHora (time){
+    while (time <= 0 || time >= 25 || isNaN(time)){
+        time = parseInt(prompt("Número inválido, ingrese nuevamente una hora"))
+    }
+    return time;
+}
+
 let prio;
 let desc;
+let hora;
 let cantidad;
 let tareas = [];
 
@@ -69,13 +78,14 @@ function ingresarTarea() {
     cantidad = parseInt(prompt("Ingrese la cantidad de tareas que desea"))
     cantidad = numeroVal(cantidad)
     for (let i = 1; i <= cantidad; i++) {
-        prio = parseInt(prompt("Ingrese prioridad de la tarea número " + i + "\nDel 1 al 10; 1 siendo la mas importante"))
+        prio = parseInt(prompt("Ingrese prioridad de la tarea número " + i + "\nDel 1 al 3; siendo 1 la más importante"))
         prio = valPrioridad(prio)
+        hora = parseInt(prompt("Ingrese hora de la tarea número " + i + "\nSólo números del 1 al 24. Sin los minutos.\nEjemplo: 15"))
+        hora = valHora (hora) 
         desc = prompt("Ingrese descripción de la tarea número " + i)
-        let tarea = new Tarea(prio, desc)
+        let tarea = new Tarea(prio, desc, hora)
         tareas.push(tarea);
     }
-    console.table(tareas)
 }
 
 function buscarTarea(valor){
@@ -91,7 +101,7 @@ let eliminar;
 
 function eliminarTarea() {
     let nuevasTareas = [];
-    let valor = prompt(concatenarLista()+ "\nEscriba la tarea quiere eliminar")
+    let valor = prompt(concatenarLista()+ "\nEscriba la descripción de la tarea que desea eliminar")
     let buscador = buscarTarea(valor)
     if(buscador == false){
         alert("No se encontró tarea")
@@ -111,10 +121,11 @@ function eliminarTarea() {
 function concatenarLista(){
     let cadena = "";
     for(item of tareas){
-        cadena = cadena + item.descripcion + "\n"
+        cadena = cadena + "\nTAREAS: " + item.descripcion + "\nHORAS: " + item.hora + "hr" + "\nPRIORIDAD: " + item.prioridad
     }
     return cadena
 }
+
 const operaciones = [
     "1.Ingresar otra tarea\n",
     "2.Eliminar tarea\n",
