@@ -8,6 +8,8 @@
     3.3 (3) Paso 4
 4. Mostrale la fecha y debajo, todas las tarea con su hora y prioridad 
 */
+
+
 class Tarea{
     constructor(prioridad, descripcion, hora){
         this.prioridad = prioridad;
@@ -15,6 +17,8 @@ class Tarea{
         this.hora = hora;
     }
 }
+
+// ingresar fecha 
 
 let fechaA = parseInt(prompt("Ingrese día (sólo número)"));
 fechaA = fechaVal1(fechaA);
@@ -25,6 +29,7 @@ fechaB = fechaVal2(fechaB);
 let fechaC = parseInt(prompt("Ingrese año (sólo número de cuatro dígitos)"));
 fechaC = fechaVal3(fechaC);
 
+//validaciones de numeros 
 
 function numeroVal(numero) {
     while (numero <= 0 || isNaN(numero)) {
@@ -68,11 +73,22 @@ function valHora (time){
     return time;
 }
 
+// variables globales 
+
 let prio;
 let desc;
 let hora;
 let cantidad;
 let tareas = [];
+let eliminar;
+let inicio = true;
+let inicio2 = true;
+let pregunta = true;
+let listadoTareas = " ";
+let operacionSeleccionada
+let lista = " "; 
+
+// tareas 
 
 function ingresarTarea() {
     cantidad = parseInt(prompt("Ingrese la cantidad de tareas que desea"))
@@ -97,8 +113,6 @@ function buscarTarea(valor){
     return false
 }
 
-let eliminar; 
-
 function eliminarTarea() {
     let nuevasTareas = [];
     let valor = prompt(concatenarLista()+ "\nEscriba la descripción de la tarea que desea eliminar")
@@ -121,29 +135,25 @@ function eliminarTarea() {
 function concatenarLista(){
     let cadena = "";
     for(item of tareas){
-        cadena = cadena + "\nTAREAS: " + item.descripcion + "\nHORAS: " + item.hora + "hr" + "\nPRIORIDAD: " + item.prioridad
+        cadena = cadena + "\nTAREA: " + item.descripcion + "\nHORA: " + item.hora + "hr" + "\nPRIORIDAD: " + item.prioridad
     }
     return cadena
 }
 
+// opciones 
+
 const operaciones = [
-    "1.Ingresar otra tarea\n",
+    "\n1.Ingresar otra tarea\n",
     "2.Eliminar tarea\n",
     "3.Finalizar\n"
 ];
 
-
-let operacionSeleccionada
-let lista = " ";
 operaciones.forEach((opcion) => {
     lista += opcion;
 }
 );
 
-let inicio = true;
-let inicio2 = true;
-let pregunta = true;
-let listadoTareas = " ";
+//codigo en orden 
 
 do {
     if (inicio != false) {
@@ -163,7 +173,7 @@ do {
                 alert("Sus tareas para el día: " + fechaA + "/" + fechaB + "/" + fechaC + "/" + "son:\n" +concatenarLista());
                 break;
             default:
-                alert("Gracias!\n Sus tareas para el día: " + fechaA + "/" + fechaB + "/" + fechaC + " son:\n" +concatenarLista());
+                alert("\nGracias!\nSus tareas para el día: " + fechaA + "/" + fechaB + "/" + fechaC + " son:\n" +concatenarLista());
                 pregunta = false
         }
     }
