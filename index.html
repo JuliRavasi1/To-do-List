@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,27 +9,39 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
         integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <title>Home</title>
-    </head>
-    <body>
-    <script src="js.js"></script>
-<div class="wrapper">
-    <header>To-do List</header>
-    <div class="inputField">
-        <input type="text" placeholder="Add your new to-do">
-        <button><i class="fas fa-plus"></i></button>
-    </div>
-    <ul class="todoList">
-        <li>Tarea n. 1<span><i class="fas fa-trash"></i></span></li>
-        <li> Tarea n. 2<span><i class="fas fa-trash"></i></span></li>
-        <li>Tarea n. 3<span><i class="fas fa-trash"></i></span></li>
-        <li>Tarea n. 4<span><i class="fas fa-trash"></i></span></li>
-    </ul>
-    <div class="footer">
-        <span>You have 4 pending tasks</span>
-        <button>Clear All</button>
-    </div>
-</div>
+    <title>Home</title>
+</head>
 
+<body id="body">
+    <div class="wrapper">
+        <h1>To-do List</h1>
+        <div class="inputField">
+            <input type="text" placeholder="Add your new to-do">
+            <button><i class="fas fa-plus"></i></button>
+        </div>
+            <table id="tabla">
+                <thead>
+                    <tr>
+                        <th>DESCRIPCION</th>
+                        <th>HORA</th>
+                        <th>PRIORIDAD</th>
+                    </tr>
+                </thead>
+                <!-- <tbody>
+                    <tr>
+                        <th>usuario pone en DESCRIPCION</th>
+                        <th>usuario pone en HORA</th>
+                        <th>usuario pone en PRIORIDAD</th>
+                    </tr>
+                </tbody> -->
+            </table>
+        <div class="footer">
+            <span>You have X pending tasks</span>
+            <button>Clear All</button>
+        </div>
+    </div>
+    <script src="js.js"></script>
+    <script src="dom.js"></script>
 </body>
+
 </html>
