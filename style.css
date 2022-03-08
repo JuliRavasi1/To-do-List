@@ -12,9 +12,9 @@ body{
 
 .wrapper{
     margin: 120px auto;
-    max-width: 400px;
+    max-width: 600px;
     width: 100%;
-    background-color: #fff;
+    background-color: rgba(0, 0, 0, 0.051);
     border-radius: 5px;
     padding: 25px;
 }
@@ -54,38 +54,48 @@ body{
     margin-left: 5px;
 }
 
-.wrapper .todoList{
-    max-height: 250px;
-    overflow-y: auto;
-}
-
-.todoList li{
-    list-style: none;
-    height: 45px;
-    line-height: 45px;
-    position: relative;
-    background: #f2f2f2;
-    border-radius: 3px;
-    margin-bottom: 8px;
-    padding: 0 15px;
-    cursor: default;
-    overflow: hidden;
-}
-
-.todoList li span{
-    position: absolute;
-    right: -45px;
-    color: #fff;
-    width: 45px;
+thead{
+    color: #8E49E8;
+    text-transform: uppercase;
+    font-weight: lighter;
+    padding: 1%;
+    width: 400px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     text-align: center;
-    border-radius: 0 3px 3px 0;
-    background: #e74c3c;
-    cursor: pointer;
-    transition: all 0.3s ease;
 }
 
-.todoList li:hover span{
-    right: 0px;
+thead tr{
+    width: 400px;
+}
+
+thead th{
+    width: 400px;
+    justify-content: stretch;
+}
+
+tbody{
+    background-color: rgba(0, 0, 0, 0.14);
+    border-radius: 3px;
+    padding: 1%;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+tbody tr{
+    width: 400px;
+}
+
+tbody th{
+    width: 400px;
+    justify-content: stretch;
+    flex-wrap: wrap;
+    text-align: center;
+    padding: 1%;
 }
 
 .wrapper .footer{

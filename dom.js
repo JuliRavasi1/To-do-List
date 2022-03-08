@@ -17,3 +17,9 @@ tareas.forEach(tarea => {
 
 tabla.appendChild(cuerpo);
 
+//////////////////////////////////////////////////
+
+let tareasPend = document.querySelector("#pendingTask");
+
+tareasPend.innerHTML = 
+`You have ${cantidad} pending tasks.`

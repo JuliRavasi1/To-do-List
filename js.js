@@ -117,7 +117,7 @@ function eliminarTarea() {
     let nuevasTareas = [];
     let valor = prompt(concatenarLista()+ "\nEscriba la descripción de la tarea que desea eliminar")
     let buscador = buscarTarea(valor)
-    if(buscador == false){
+    if(buscador === false){
         alert("No se encontró tarea")
     }else{
         eliminar = tareas.indexOf(buscador);
@@ -126,6 +126,7 @@ function eliminarTarea() {
             if (tareas[i] == buscador) {
                 continue
             }
+            cantidad = cantidad - [i];
             nuevasTareas.push(tareas[i]);
         }
         tareas = nuevasTareas;
