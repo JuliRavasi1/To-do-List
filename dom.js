@@ -23,3 +23,5 @@ let tareasPend = document.querySelector("#pendingTask");
 
 tareasPend.innerHTML = 
 `You have ${cantidad} pending tasks.`
+
+/////// ese dato de cantidad es lo que no se me modifica cuando quiero eliminar tareas. 

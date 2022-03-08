@@ -126,7 +126,7 @@ function eliminarTarea() {
             if (tareas[i] == buscador) {
                 continue
             }
-            cantidad = cantidad - [i];
+            cantidad = cantidad - 1;
             nuevasTareas.push(tareas[i]);
         }
         tareas = nuevasTareas;
