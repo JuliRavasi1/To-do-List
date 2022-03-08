@@ -126,18 +126,20 @@ function eliminarTarea() {
             if (tareas[i] == buscador) {
                 continue
             }
-            cantidad = cantidad - 1;
+            // cantidad %= 1;
             nuevasTareas.push(tareas[i]);
         }
         tareas = nuevasTareas;
     }
 }
+// let resta; 
 
 function concatenarLista(){
     let cadena = "";
     for(item of tareas){
-        cadena = cadena + "\nTAREA: " + item.descripcion + "\nHORA: " + item.hora + "hr" + "\nPRIORIDAD: " + item.prioridad
+        cadena = cadena + "\nTAREA: " + item.descripcion + "\nHORA: " + item.hora + "hr" + "\nPRIORIDAD: " + item.prioridad; 
     }
+    tareas.sort((a,b)=> a.hora - b.hora)
     return cadena
 }
 

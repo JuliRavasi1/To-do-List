@@ -1,3 +1,5 @@
+//lista imprimiendo tareas 
+
 let tabla = document.querySelector("#tabla");
 
 let cuerpo = document.createElement("tbody");
@@ -17,11 +19,10 @@ tareas.forEach(tarea => {
 
 tabla.appendChild(cuerpo);
 
-//////////////////////////////////////////////////
+// contador de tareas 
 
 let tareasPend = document.querySelector("#pendingTask");
 
 tareasPend.innerHTML = 
-`You have ${cantidad} pending tasks.`
+`You have ${tareas.length} pending tasks.`
 
-/////// ese dato de cantidad es lo que no se me modifica cuando quiero eliminar tareas. 
