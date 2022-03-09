@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,32 +8,26 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
         integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <title>Home</title>
-</head>
-
-<body id="body">
-    <div class="wrapper">
-        <h1>To-do List</h1>
-        <div class="inputField">
-            <input type="text" placeholder="Add your new to-do">
-            <button><i class="fas fa-plus"></i></button>
-        </div>
-            <table id="tabla">
-                <thead>
-                    <tr>
-                        <th>DESCRIPCION</th>
-                        <th>HORA</th>
-                        <th>PRIORIDAD</th>
-                    </tr>
-                </thead>
-            </table>
-        <div class="footer">
-            <span id="pendingTask"> </span>
-            <button>Clear All</button>
-        </div>
+        <title>Home</title>
+    </head>
+    <body>
+<div class="wrapper">
+    <header>To-do List</header>
+    <div class="inputField">
+        <input type="text" placeholder="Add your new to-do">
+        <button id="botonSubmit"><i class="fas fa-plus"></i></button>
     </div>
+    <div class="li-container">
+        <ul class="todolist">
+            
+        </ul>
+    </div>
+    <div class="footer">
+        <span> pending tasks</span>
+        <!-- boton clear all -->
+    </div>
+</div>
     <script src="js.js"></script>
     <script src="dom.js"></script>
 </body>
-
-</html>
+</html> 
