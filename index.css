@@ -2,3 +2,8 @@
     margin-top: 5px;
     margin-bottom: 5px;
 }
+
+main{
+    height: 500vh;
+    background-color: #19875480;
+}
