@@ -10,176 +10,176 @@
 */
 
 
-// class Tarea{
-//     constructor(prioridad, descripcion, hora){
-//         this.prioridad = prioridad;
-//         this.descripcion = descripcion;
-//         this.hora = hora;
-//     }
-// }
+class Tarea{
+    constructor(prioridad, descripcion, hora){
+        this.prioridad = prioridad;
+        this.descripcion = descripcion;
+        this.hora = hora;
+    }
+}
 
-// // ingresar fecha 
+// ingresar fecha 
 
-// let fechaA = parseInt(prompt("Ingrese día (sólo número)"));
-// fechaA = fechaVal1(fechaA);
+let fechaA = parseInt(prompt("Ingrese día (sólo número)"));
+fechaA = fechaVal1(fechaA);
 
-// let fechaB = parseInt(prompt("Ingrese mes (sólo número de hasta dos dígitos)"));
-// fechaB = fechaVal2(fechaB);
+let fechaB = parseInt(prompt("Ingrese mes (sólo número de hasta dos dígitos)"));
+fechaB = fechaVal2(fechaB);
 
-// let fechaC = parseInt(prompt("Ingrese año (sólo número de cuatro dígitos)"));
-// fechaC = fechaVal3(fechaC);
+let fechaC = parseInt(prompt("Ingrese año (sólo número de cuatro dígitos)"));
+fechaC = fechaVal3(fechaC);
 
-// //validaciones de numeros 
+//validaciones de numeros 
 
-// function numeroVal(numero) {
-//     while (numero <= 0 || isNaN(numero)) {
-//         numero = parseInt(prompt("Número invalido, ingrese nuevamente un número"))
-//     }
-//     return numero;
-// }
+function numeroVal(numero) {
+    while (numero <= 0 || isNaN(numero)) {
+        numero = parseInt(prompt("Número invalido, ingrese nuevamente un número"))
+    }
+    return numero;
+}
 
-// function fechaVal1(fecha1) {
-//     while (fecha1 <= 0 || fecha1 >= 32 || isNaN(fecha1)) {
-//         fecha1 = parseInt(prompt("Número invalido, ingrese nuevamente un día"))
-//     }
-//     return fecha1;
-// }
+function fechaVal1(fecha1) {
+    while (fecha1 <= 0 || fecha1 >= 32 || isNaN(fecha1)) {
+        fecha1 = parseInt(prompt("Número invalido, ingrese nuevamente un día"))
+    }
+    return fecha1;
+}
 
-// function fechaVal2(fecha2) {
-//     while (fecha2 <= 0 || fecha2 >= 13 || isNaN(fecha2)) {
-//         fecha2 = parseInt(prompt("Número invalido, ingrese nuevamente un mes"))
-//     }
-//     return fecha2;
-// }
+function fechaVal2(fecha2) {
+    while (fecha2 <= 0 || fecha2 >= 13 || isNaN(fecha2)) {
+        fecha2 = parseInt(prompt("Número invalido, ingrese nuevamente un mes"))
+    }
+    return fecha2;
+}
 
-// function fechaVal3(fecha3) {
-//     while (fecha3 <= 2021 || fecha3 >= 2030 || isNaN(fecha3)) {
-//         fecha3 = parseInt(prompt("Número invalido, ingrese nuevamente un año"))
-//     }
-//     return fecha3;
-// }
+function fechaVal3(fecha3) {
+    while (fecha3 <= 2021 || fecha3 >= 2030 || isNaN(fecha3)) {
+        fecha3 = parseInt(prompt("Número invalido, ingrese nuevamente un año"))
+    }
+    return fecha3;
+}
 
-// function valPrioridad (orden){
-//     while (orden <= 0 || orden >= 4 || isNaN(orden)){
-//         orden = parseInt(prompt("Número inválido, ingrese nuevamente una prioridad"))
-//     }
-//     return orden;
-// }
+function valPrioridad (orden){
+    while (orden <= 0 || orden >= 4 || isNaN(orden)){
+        orden = parseInt(prompt("Número inválido, ingrese nuevamente una prioridad"))
+    }
+    return orden;
+}
 
-// function valHora (time){
-//     while (time <= 0 || time >= 25 || isNaN(time)){
-//         time = parseInt(prompt("Número inválido, ingrese nuevamente una hora"))
-//     }
-//     return time;
-// }
+function valHora (time){
+    while (time <= 0 || time >= 25 || isNaN(time)){
+        time = parseInt(prompt("Número inválido, ingrese nuevamente una hora"))
+    }
+    return time;
+}
 
-// // variables globales 
+// variables globales 
 
-// let prio;
-// let desc;
-// let hora;
-// let cantidad;
-// let tareas = [];
-// let eliminar;
-// let inicio = true;
-// let inicio2 = true;
-// let pregunta = true;
-// let listadoTareas = " ";
-// let operacionSeleccionada
-// let lista = " "; 
+let prio;
+let desc;
+let hora;
+let cantidad;
+let tareas = [];
+let eliminar;
+let inicio = true;
+let inicio2 = true;
+let pregunta = true;
+let listadoTareas = " ";
+let operacionSeleccionada
+let lista = " "; 
 
-// // tareas 
+// tareas 
 
-// function ingresarTarea() {
-//     cantidad = parseInt(prompt("Ingrese la cantidad de tareas que desea"))
-//     cantidad = numeroVal(cantidad)
-//     for (let i = 1; i <= cantidad; i++) {
-//         prio = parseInt(prompt("Ingrese prioridad de la tarea número " + i + "\nDel 1 al 3; siendo 1 la más importante"))
-//         prio = valPrioridad(prio)
-//         hora = parseInt(prompt("Ingrese hora de la tarea número " + i + "\nSólo números del 1 al 24. Sin los minutos.\nEjemplo: 15"))
-//         hora = valHora (hora) 
-//         desc = prompt("Ingrese descripción de la tarea número " + i)
-//         let tarea = new Tarea(prio, desc, hora)
-//         tareas.push(tarea);
-//     }
-// }
+function ingresarTarea() {
+    cantidad = parseInt(prompt("Ingrese la cantidad de tareas que desea"))
+    cantidad = numeroVal(cantidad)
+    for (let i = 1; i <= cantidad; i++) {
+        prio = parseInt(prompt("Ingrese prioridad de la tarea número " + i + "\nDel 1 al 3; siendo 1 la más importante"))
+        prio = valPrioridad(prio)
+        hora = parseInt(prompt("Ingrese hora de la tarea número " + i + "\nSólo números del 1 al 24. Sin los minutos.\nEjemplo: 15"))
+        hora = valHora (hora) 
+        desc = prompt("Ingrese descripción de la tarea número " + i)
+        let tarea = new Tarea(prio, desc, hora)
+        tareas.push(tarea);
+    }
+}
 
-// function buscarTarea(valor){
-//     for(item of tareas){
-//         if(item.descripcion == valor){
-//             return item
-//         }
-//     }
-//     return false
-// }
+function buscarTarea(valor){
+    for(item of tareas){
+        if(item.descripcion == valor){
+            return item
+        }
+    }
+    return false
+}
 
-// function eliminarTarea() {
-//     let nuevasTareas = [];
-//     let valor = prompt(concatenarLista()+ "\nEscriba la descripción de la tarea que desea eliminar")
-//     let buscador = buscarTarea(valor)
-//     if(buscador === false){
-//         alert("No se encontró tarea")
-//     }else{
-//         eliminar = tareas.indexOf(buscador);
-//         // copia toda la lista tareas en nuevasTareas, excepto cuando tenga el valor que quiere eliminar 
-//         for (let i = 0; i < tareas.length; i++) {
-//             if (tareas[i] == buscador) {
-//                 continue
-//             }
-//             // cantidad %= 1;
-//             nuevasTareas.push(tareas[i]);
-//         }
-//         tareas = nuevasTareas;
-//     }
-// }
-// // let resta; 
+function eliminarTarea() {
+    let nuevasTareas = [];
+    let valor = prompt(concatenarLista()+ "\nEscriba la descripción de la tarea que desea eliminar")
+    let buscador = buscarTarea(valor)
+    if(buscador === false){
+        alert("No se encontró tarea")
+    }else{
+        eliminar = tareas.indexOf(buscador);
+        // copia toda la lista tareas en nuevasTareas, excepto cuando tenga el valor que quiere eliminar 
+        for (let i = 0; i < tareas.length; i++) {
+            if (tareas[i] == buscador) {
+                continue
+            }
+            // cantidad %= 1;
+            nuevasTareas.push(tareas[i]);
+        }
+        tareas = nuevasTareas;
+    }
+}
+// let resta; 
 
-// function concatenarLista(){
-//     let cadena = "";
-//     for(item of tareas){
-//         cadena = cadena + "\nTAREA: " + item.descripcion + "\nHORA: " + item.hora + "hr" + "\nPRIORIDAD: " + item.prioridad; 
-//     }
-//     tareas.sort((a,b)=> a.hora - b.hora)
-//     return cadena
-// }
+function concatenarLista(){
+    let cadena = "";
+    for(item of tareas){
+        cadena = cadena + "\nTAREA: " + item.descripcion + "\nHORA: " + item.hora + "hr" + "\nPRIORIDAD: " + item.prioridad; 
+    }
+    tareas.sort((a,b)=> a.hora - b.hora)
+    return cadena
+}
 
-// // opciones 
+// opciones 
 
-// const operaciones = [
-//     "\n1.Ingresar otra tarea\n",
-//     "2.Eliminar tarea\n",
-//     "3.Finalizar\n"
-// ];
+const operaciones = [
+    "\n1.Ingresar otra tarea\n",
+    "2.Eliminar tarea\n",
+    "3.Finalizar\n"
+];
 
-// operaciones.forEach((opcion) => {
-//     lista += opcion;
-// }
-// );
+operaciones.forEach((opcion) => {
+    lista += opcion;
+}
+);
 
-// //codigo en orden 
+//codigo en orden 
 
-// do {
-//     if (inicio != false) {
-//         ingresarTarea()
-//         
-//         inicio = false
-//     } else if (inicio2 != false) {
-//         operacionSeleccionada = parseInt(prompt("Seleccione una opción:\n" +lista));
-//         operacionSeleccionada = numeroVal(operacionSeleccionada);
-//         switch (operacionSeleccionada) {
-//             case 1:
-//                 ingresarTarea()
-//             
-//                 break;
-//             case 2:
-//                 eliminarTarea()
-//                 
-//                 break;
-//             default:
-//                 
-//                 pregunta = false
-//         }
-//     }
-// } while (pregunta == true)
+do {
+    if (inicio != false) {
+        ingresarTarea()
+        
+        inicio = false
+    } else if (inicio2 != false) {
+        operacionSeleccionada = parseInt(prompt("Seleccione una opción:\n" +lista));
+        operacionSeleccionada = numeroVal(operacionSeleccionada);
+        switch (operacionSeleccionada) {
+            case 1:
+                ingresarTarea()
+            
+                break;
+            case 2:
+                eliminarTarea()
+                
+                break;
+            default:
+                
+                pregunta = false
+        }
+    }
+} while (pregunta == true)
 
 
