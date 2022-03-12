@@ -1,9 +1,18 @@
-#time{
+#date{
     margin-top: 5px;
     margin-bottom: 5px;
 }
 
 main{
-    height: 500vh;
+    height: 400vh;
     background-color: #19875480;
+}
+
+.btn-danger{
+    margin-right: 10px;
+    margin-bottom: 5px;
+}
+
+.btn-dark{
+    margin-bottom: 5px;
 }
