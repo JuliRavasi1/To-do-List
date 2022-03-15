@@ -1,7 +1,3 @@
-// que al hacer click en SAVE se guarden los datos de los inputs en un array DONE
-// imprimir ese array en un tr y td 
-
-
 class Lista {
     constructor(descripcion, fecha, hora) {
         this.descripcion = descripcion;
@@ -10,21 +6,22 @@ class Lista {
     }
 }
 
-const listas = [];
+let listas = [];
+
 
 const btnSave = document.querySelector("#botonSubmit");
 
 btnSave.addEventListener("click", (e) => {
     e.preventDefault();
-
+    
     guardarTareas();
 });
 
 function guardarTareas() {
-    const descripcionInput = document.querySelector("#form1").value;
+    const descripcionInput = document.querySelector("#form1").value;   
     const fechaInput = document.querySelector("#date").value;
     const horaInput = document.querySelector("#time").value;
-
+    
     if (descripcionInput.trim() === "" || fechaInput.trim() === "" || horaInput.trim() === "") {
         alert("COMPLETE TODOS LOS CAMPOS");
     } else {
@@ -37,16 +34,16 @@ function guardarTareas() {
 function imprimirTareas(listas) {
     const tableBody = document.querySelector("tbody");
     tableBody.textContent = "";
-
+    
     let tr;
     listas.forEach(tarea => {
         tr = document.createElement("tr");
         tr.innerHTML = `
-            <td>${tarea.descripcion}</td>
-            <td>${tarea.fecha}</td>
-            <td>${tarea.hora}</td>
-            <button id="${tarea.descripcion}" class="btn btn-danger" type="submit">Delete</button>
-            <button id="${tarea.descripcion}" class="btn btn-dark ms-1" type="submit">Finished</button>
+        <td>${tarea.descripcion}</td>
+        <td>${tarea.fecha}</td>
+        <td>${tarea.hora}</td>
+        <button id="${tarea.descripcion}" class="btn btn-danger" type="submit">Delete</button>
+        <button id="${tarea.descripcion}" class="btn btn-dark ms-1" type="submit">Finished</button>
         `
         tableBody.appendChild(tr);
         
@@ -54,7 +51,19 @@ function imprimirTareas(listas) {
         btnEliminarAll.onclick = () => {
             tableBody.remove(tr);
         };
-            return btnEliminarAll;
+        return btnEliminarAll;
     });
+    storageTareas();
 }
 
+function storageTareas(){
+    localStorage.setItem("tarea", JSON.stringify (listas));
+}
+
+function storageTareasPrecarga(){
+    if (localStorage.getItem("tarea") !== null){ 
+        listas = JSON.parse(localStorage.getItem("tarea")); 
+    }
+}
+
+// storageTareasPrecarga();
