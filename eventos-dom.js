@@ -8,8 +8,9 @@ class Lista {
 
 let listas = [];
 
-
 const btnSave = document.querySelector("#botonSubmit");
+
+storageTareasPrecarga(); 
 
 btnSave.addEventListener("click", (e) => {
     e.preventDefault();
@@ -32,7 +33,7 @@ function guardarTareas() {
 }
 
 function imprimirTareas(listas) {
-    const tableBody = document.querySelector("tbody");
+    const tableBody = document.querySelector("#contenedorBody");
     tableBody.textContent = "";
     
     let tr;
@@ -42,14 +43,14 @@ function imprimirTareas(listas) {
         <td>${tarea.descripcion}</td>
         <td>${tarea.fecha}</td>
         <td>${tarea.hora}</td>
-        <button id="${tarea.descripcion}" class="btn btn-danger" type="submit">Delete</button>
-        <button id="${tarea.descripcion}" class="btn btn-dark ms-1" type="submit">Finished</button>
+        <button id="hecho${tarea.descripcion}" class="btn btn-dark ms-1" type="submit">Finished</button>
         `
         tableBody.appendChild(tr);
         
         const btnEliminarAll = document.querySelector ("#btnDeleteAll");
         btnEliminarAll.onclick = () => {
             tableBody.remove(tr);
+            localStorage.clear();
         };
         return btnEliminarAll;
     });
@@ -64,6 +65,29 @@ function storageTareasPrecarga(){
     if (localStorage.getItem("tarea") !== null){ 
         listas = JSON.parse(localStorage.getItem("tarea")); 
     }
+    reimprimirTareas(); 
 }
 
-// storageTareasPrecarga();
+function reimprimirTareas(){
+    const tableBody = document.querySelector("#contenedorBody");
+    tableBody.textContent = "";
+    
+    let tr;
+    listas.forEach(tarea => {
+        tr = document.createElement("tr");
+        tr.innerHTML = `
+        <td>${tarea.descripcion}</td>
+        <td>${tarea.fecha}</td>
+        <td>${tarea.hora}</td>
+        <button id="${tarea.descripcion}" class="btn btn-dark ms-1" type="submit">Finished</button>
+        `
+        tableBody.appendChild(tr);
+        
+        const btnEliminarAll = document.querySelector ("#btnDeleteAll");
+        btnEliminarAll.onclick = () => {
+            tableBody.remove(tr);
+            localStorage.clear();
+        }
+        return btnEliminarAll;
+    });
+}
