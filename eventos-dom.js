@@ -10,6 +10,7 @@ let listas = [];
 
 const btnSave = document.querySelector("#botonSubmit");
 let tableBody = document.querySelector("#contenedorBody");
+const btnEliminarAll = document.querySelector("#btnDeleteAll");
 
 storageTareasPrecarga();
 
@@ -25,7 +26,12 @@ function guardarTareas() {
     const horaInput = document.querySelector("#time").value;
 
     if (descripcionInput.trim() === "" || fechaInput.trim() === "" || horaInput.trim() === "") {
-        alert("COMPLETE TODOS LOS CAMPOS");
+            Swal.fire({
+                title: "CAMPOS INCORRECTOS",
+                text: "complete todos los campos para continuar",
+                icon: "error"
+            });
+
     } else {
         listas.push(new Lista(`${descripcionInput}`, `${fechaInput}`, `${horaInput}`));
         imprimirTareas(listas);
@@ -51,11 +57,23 @@ function imprimirTareas(listas) {
     storageTareas();
 }
 
-const btnEliminarAll = document.querySelector("#btnDeleteAll");
 btnEliminarAll.onclick = () => {
-    listas = [];
-    tableBody.textContent = "";
-    localStorage.clear();
+    Swal.fire({
+        title: "DESEA ELIMINAR TODAS LAS TAREAS?",
+        showCancelButton: true,
+        confirmButtonText: "SI, ELIMINAR",
+        cancelButtonText: "CANCELAR",
+        icon: "warning"
+    }).then((respuesta)=>{
+        if (respuesta.isConfirmed){
+            listas = [];
+            tableBody.textContent = "";
+            localStorage.clear();
+        }else{
+            console.log("no elimino");
+        }
+    });
+
 };
 
 function storageTareas() {
