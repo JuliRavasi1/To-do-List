@@ -15,16 +15,6 @@ let listas = [];
 function buscarTarea(valor) {
     let valorGuardado = getTareas();
     for (const tarea of valorGuardado) {
-        if (tarea.id == valor) {
-            return true;
-        }
-    }
-    return false;
-}
-
-function buscarTareaDescr(valor) {
-    let valorGuard = getTareas();
-    for (const tarea of valorGuard) {
         if (tarea.descripcion == valor) {
             return true;
         }
@@ -86,7 +76,7 @@ function guardarTareas() {
             icon: "error"
         });
     } else {
-        if (buscarTareaDescr(descripcionInput)) {
+        if (buscarTarea(descripcionInput)) {
             Swal.fire({
                 title: "REPEATED TASK",
                 text: "Enter a different task",
