@@ -22,6 +22,16 @@ function buscarTarea(valor) {
     return false;
 }
 
+function buscarTareaDescr(valor) {
+    let valorGuard = getTareas();
+    for (const tarea of valorGuard) {
+        if (tarea.descripcion == valor) {
+            return true;
+        }
+    }
+    return false;
+}
+
 // guarda las tareas en el storage
 function setTareas(lista) {
     localStorage.setItem("tarea", JSON.stringify(lista));
@@ -71,15 +81,15 @@ function guardarTareas() {
 
     if (descripcionInput.trim() === "" || fechaInput.trim() === "" || horaInput.trim() === "") {
         Swal.fire({
-            title: "CAMPOS INCORRECTOS",
-            text: "complete todos los campos para continuar",
+            title: "INVALID",
+            text: "Fill in all the fields to continue",
             icon: "error"
         });
     } else {
-        if (buscarTarea(id)) {
+        if (buscarTareaDescr(descripcionInput)) {
             Swal.fire({
-                title: "TAREA REPETIDA",
-                text: "ingrese una tarea diferente",
+                title: "REPEATED TASK",
+                text: "Enter a different task",
                 icon: "error"
             });
         } else {
@@ -153,10 +163,10 @@ function imprimirTareas() {
 
 btnEliminarAll.onclick = () => {
     Swal.fire({
-        title: "DESEA ELIMINAR TODAS LAS TAREAS?",
+        title: "DO YOU WANT TO DELETE ALL THE TASK?",
         showCancelButton: true,
-        confirmButtonText: "SI, ELIMINAR",
-        cancelButtonText: "CANCELAR",
+        confirmButtonText: "YES, DELETE",
+        cancelButtonText: "CANCEL",
         icon: "warning"
     }).then((respuesta) => {
         if (respuesta.isConfirmed) {
