@@ -53,6 +53,7 @@ function getId() {
 const btnSave = document.querySelector("#botonSubmit");
 let tableBody = document.querySelector("#contenedorBody");
 const btnEliminarAll = document.querySelector("#btnDeleteAll");
+const btnSend = document.querySelector("#btnSend");
 
 imprimirTareas();
 
@@ -103,9 +104,9 @@ function imprimirTareas() {
     listas.forEach((tarea) => {
         tr = document.createElement("tr");
         tr.innerHTML = `
-        <td>${tarea.descripcion}</td>
-        <td>${tarea.fecha}</td>
-        <td>${tarea.hora}</td>
+        <td name="tasks">${tarea.descripcion}</td>
+        <td name="tasks">${tarea.fecha}</td>
+        <td name="tasks">${tarea.hora}</td>
         <button id="hecho${tarea.id}" class="btn btn-dark ms-1" type="submit">Finished</button>
         `;
 
@@ -153,7 +154,7 @@ function imprimirTareas() {
 
 btnEliminarAll.onclick = () => {
     Swal.fire({
-        title: "DO YOU WANT TO DELETE ALL THE TASK?",
+        title: "DO YOU WANT TO DELETE ALL THE TASKS?",
         showCancelButton: true,
         confirmButtonText: "YES, DELETE",
         cancelButtonText: "CANCEL",
@@ -168,3 +169,69 @@ btnEliminarAll.onclick = () => {
         }
     });
 };
+
+btnSend.addEventListener('click', function (event) {
+    inputs();  
+})
+
+async function inputs () {
+    const { value: email } = await Swal.fire({
+        title: 'Your email address',
+        input: 'email',
+        inputPlaceholder: 'Enter your email address',
+    });
+    if (email) {
+        Swal.fire(`Entered email: ${email}`)
+    }
+    const { value: name } = await Swal.fire({
+        title: 'Your name',
+        input: 'text',
+        inputPlaceholder: 'Enter your name',
+    });
+    datos(name, email); 
+}
+
+function datos(name, email) {
+    var templateParams = {
+        name: `${name}`,
+        email: `${email}`,
+        tasks: tasks(getTareas())
+    };
+
+    emailjs.send('service_50je81c', 'template_zfajyxb', templateParams)
+        .then(function (response) {
+            Swal.fire({
+                title: "E-mail sent",
+                icon: "success"
+            })
+            console.log('SUCCESS!', response.status, response.text);
+        }, function (error) {
+            Swal.fire({
+                title: "Couldn't send your e-mail, try again later",
+                icon: "error"
+            })
+            console.log('FAILED...', error);
+        });
+}
+
+function tasks (storage) {
+    let string = ""; 
+    for (const tarea of storage) {
+        string += `
+        || TAREA: ${tarea.descripcion} HORA: ${tarea.hora} FECHA: ${tarea.fecha} ||
+        `
+    } 
+    return string; 
+}
+
+
+
+
+
+
+
+
+/////// fetch 
+
+// const url = "https://api.emailjs.com/api/v1.0/email/send";
+
