@@ -1,3 +1,4 @@
+// objeto
 class Lista {
     constructor(descripcion, fecha, hora, estado, id) {
         this.descripcion = descripcion;
@@ -8,6 +9,7 @@ class Lista {
     }
 }
 
+//array vacio en donde guardo las tareas ingresadas
 let listas = [];
 
 // busca una tarea que recibe por parametro en el storage
@@ -36,12 +38,12 @@ function getTareas() {
     return listaTarea;
 }
 
-//
+// guarda el id en el storage
 function setId(id) {
     localStorage.setItem("Id", JSON.stringify(id));
 }
 
-//
+// me trae el id del storage
 function getId() {
     let id = JSON.parse(localStorage.getItem("Id"));
     if (id == null || id == undefined) {
@@ -50,19 +52,23 @@ function getId() {
     return id;
 }
 
+// declaracion de variables globales 
 const btnSave = document.querySelector("#botonSubmit");
 let tableBody = document.querySelector("#contenedorBody");
 const btnEliminarAll = document.querySelector("#btnDeleteAll");
 const btnSend = document.querySelector("#btnSend");
 
+// inicio del codigo desarrollado 
 imprimirTareas();
 
+//boton de save
 btnSave.addEventListener("click", (e) => {
     e.preventDefault();
 
     guardarTareas();
 });
 
+// tomo los datos de los inputs 
 function guardarTareas() {
     let id = getId();
     id++;
@@ -80,7 +86,7 @@ function guardarTareas() {
         if (buscarTarea(descripcionInput)) {
             Swal.fire({
                 title: "REPEATED TASK",
-                text: "Enter a different task",
+                text: "Enter a different task to continue",
                 icon: "error"
             });
         } else {
@@ -95,6 +101,7 @@ function guardarTareas() {
     document.getElementById("formulario").reset();
 }
 
+// imprimo en listas los datos capturados en guardarTareas() y boton de finished
 function imprimirTareas() {
     let tableBody = document.querySelector("#contenedorBody");
     tableBody.textContent = "";
@@ -152,9 +159,11 @@ function imprimirTareas() {
     });
 }
 
+//boton eliminar todo
 btnEliminarAll.onclick = () => {
     Swal.fire({
         title: "DO YOU WANT TO DELETE ALL THE TASKS?",
+        text: "Once you delete them, they will no longer be available",
         showCancelButton: true,
         confirmButtonText: "YES, DELETE",
         cancelButtonText: "CANCEL",
@@ -170,27 +179,32 @@ btnEliminarAll.onclick = () => {
     });
 };
 
+//boton para enviar tareas al mail
 btnSend.addEventListener('click', function (event) {
     inputs();  
 })
 
+// asincronimo para el funcionamiento del boton de enviar
 async function inputs () {
     const { value: email } = await Swal.fire({
-        title: 'Your email address',
+        title: 'Enter your email address',
+        text: "We won't save your information",
         input: 'email',
-        inputPlaceholder: 'Enter your email address',
+        inputPlaceholder: 'example@gmail.com',
     });
     if (email) {
         Swal.fire(`Entered email: ${email}`)
     }
     const { value: name } = await Swal.fire({
-        title: 'Your name',
+        title: 'Enter your name',
         input: 'text',
-        inputPlaceholder: 'Enter your name',
+        inputPlaceholder: 'Name',
     });
+    btnSend.innerText = "Sending..."
     datos(name, email); 
 }
 
+// funcionamiento de emailjs
 function datos(name, email) {
     var templateParams = {
         name: `${name}`,
@@ -204,6 +218,7 @@ function datos(name, email) {
                 title: "E-mail sent",
                 icon: "success"
             })
+            btnSend.innerText = "Send to E-mail"
             console.log('SUCCESS!', response.status, response.text);
         }, function (error) {
             Swal.fire({
@@ -214,6 +229,7 @@ function datos(name, email) {
         });
 }
 
+// lo que envio como contenido del mail
 function tasks (storage) {
     let string = ""; 
     for (const tarea of storage) {
@@ -223,15 +239,3 @@ function tasks (storage) {
     } 
     return string; 
 }
-
-
-
-
-
-
-
-
-/////// fetch 
-
-// const url = "https://api.emailjs.com/api/v1.0/email/send";
-
