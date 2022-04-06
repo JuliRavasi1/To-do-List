@@ -68,6 +68,7 @@ btnSave.addEventListener("click", (e) => {
     guardarTareas();
 });
 
+
 // tomo los datos de los inputs 
 function guardarTareas() {
     let id = getId();
@@ -206,7 +207,7 @@ async function inputs () {
 
 // funcionamiento de emailjs
 function datos(name, email) {
-    var templateParams = {
+    let templateParams = {
         name: `${name}`,
         email: `${email}`,
         tasks: tasks(getTareas())
