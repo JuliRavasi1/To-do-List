@@ -52,6 +52,33 @@ function getId() {
     return id;
 }
 
+//recibe un numero 
+//retorna un numero con 5 digitos 
+function recortar(num){
+    let string = num.toString()
+    num = ""
+    for(let i = 0; i < 5; i++){
+        num+= string[i]
+    }
+    return (Number(num))
+}
+
+// recive una fecha
+// retorna boolean si igual o mayor que la fecha actual
+function validarFecha(fechaIngresada){
+
+    fechaIngresada =(new Date(fechaIngresada).getTime())
+    let date = (new Date().getTime())
+
+    fechaIngresada = recortar(fechaIngresada)
+    date = recortar(date)
+
+    if(fechaIngresada >= date){
+        return true
+    }
+    return false
+}
+
 // declaracion de variables globales 
 const btnSave = document.querySelector("#botonSubmit");
 let tableBody = document.querySelector("#contenedorBody");
@@ -91,12 +118,20 @@ function guardarTareas() {
                 icon: "error"
             });
         } else {
-            let valoresStorage = getTareas();
-            valoresStorage.push(new Lista(`${descripcionInput}`, `${fechaInput}`, `${horaInput}`, false, id));
+            if(validarFecha(fechaInput)){
+                let valoresStorage = getTareas();
+                valoresStorage.push(new Lista(`${descripcionInput}`, `${fechaInput}`, `${horaInput}`, false, id));
 
-            setTareas(valoresStorage);
-            setId(id);
-            imprimirTareas();
+                setTareas(valoresStorage);
+                setId(id);
+                imprimirTareas();
+            }else{
+                Swal.fire({
+                    title: "INVALID DATE",
+                    text: "Enter a valid date to continue",
+                    icon: "error"
+                });
+            }
         }
     }
     document.getElementById("formulario").reset();
@@ -174,8 +209,21 @@ btnEliminarAll.onclick = () => {
             listas = [];
             tableBody.textContent = "";
             localStorage.clear();
+            Toastify({
+                text: "We already delete your tasks!",
+                duration: 2000,
+                gravity: "top",
+                position: "right",
+                style: {
+                    background: "#007F66"
+                }
+            }).showToast();
         } else {
-            console.log("no elimino");
+            Swal.fire({
+                title: "NOTHING TO DELETE",
+                confirmButtonText: "OK",
+                icon: "success"
+            });
         }
     });
 };
@@ -226,6 +274,7 @@ function datos(name, email) {
                 title: "Couldn't send your e-mail, try again later",
                 icon: "error"
             })
+            btnSend.innerText = "Send to E-mail"
             console.log('FAILED...', error);
         });
 }
